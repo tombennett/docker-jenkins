@@ -9,14 +9,14 @@ RUN powershell -executionpolicy bypass -command \
 
 RUN powershell -executionpolicy bypass -command \
       # Install Jenkins using chocolatey
-      choco install jenkins
+      choco install jenkins -y
 
 RUN powershell -executionpolicy bypass -command \
       # Configure Jenkins
       $Config = Get-Content -Path "${ENV:ProgramFiles(x86)}\Jenkins\Jenkins.xml" ;\
       $NewConfig = $Config -replace '--httpPort=[0-9]*\s','--httpPort=80 ' ;\
       Set-Content -Path "${ENV:ProgramFiles(x86)}\Jenkins\Jenkins.xml" -Value $NewConfig -Force ;\
-      Restart-Service -Name Jenkins -y
+      Restart-Service -Name Jenkins
 
 EXPOSE 80
 
