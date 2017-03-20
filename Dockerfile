@@ -14,3 +14,6 @@ RUN powershell -executionpolicy bypass -command \
 EXPOSE 8080
 
 CMD [ "powershell.exe" ] 
+
+# Once your container is running run the following command to get the initial Jenkins Admin password
+# docker exec %CONTAINERNAME% powershell "cat 'C:\Program Files (x86)\Jenkins\secrets\initialAdminPassword'"
